@@ -548,7 +548,10 @@ function App() {
 
       {/* Register Modal */}
       {showRegister && (
-        <div className="fixed inset-0 z-50 overflow-hidden" onClick={() => setShowRegister(false)}>
+        <div className="fixed inset-0 z-50 overflow-hidden" onClick={() => {
+          setShowRegister(false);
+          setAuthError('');
+        }}>
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <div className="absolute inset-0 flex items-center justify-center p-4">
             <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>

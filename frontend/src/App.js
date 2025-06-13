@@ -493,7 +493,7 @@ function App() {
                   ×
                 </button>
               </div>
-              <form onSubmit={handleLogin}>
+              <form onSubmit={handleLogin} noValidate>
                 {authError && (
                   <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
                     {authError}
@@ -508,6 +508,7 @@ function App() {
                     value={loginForm.email}
                     onChange={(e) => setLoginForm({...loginForm, email: e.target.value})}
                     placeholder="Enter your email"
+                    autoComplete="email"
                   />
                 </div>
                 <div className="mb-6">
@@ -519,11 +520,13 @@ function App() {
                     value={loginForm.password}
                     onChange={(e) => setLoginForm({...loginForm, password: e.target.value})}
                     placeholder="Enter your password"
+                    autoComplete="current-password"
                   />
                 </div>
                 <button
                   type="submit"
                   className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                  disabled={!loginForm.email || !loginForm.password}
                 >
                   Login
                 </button>

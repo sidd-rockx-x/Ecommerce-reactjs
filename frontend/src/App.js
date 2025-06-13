@@ -135,6 +135,8 @@ function App() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setAuthError('');
+    
     try {
       const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
@@ -151,17 +153,20 @@ function App() {
         setUser(data.user);
         setShowLogin(false);
         setLoginForm({ email: '', password: '' });
+        console.log('Login successful:', data.user);
       } else {
-        alert(data.detail || 'Login failed');
+        setAuthError(data.detail || 'Login failed. Please check your credentials.');
       }
     } catch (error) {
       console.error('Login error:', error);
-      alert('Login failed');
+      setAuthError('Login failed. Please try again.');
     }
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setAuthError('');
+    
     try {
       const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: 'POST',
@@ -178,12 +183,13 @@ function App() {
         setUser(data.user);
         setShowRegister(false);
         setRegisterForm({ email: '', password: '', name: '' });
+        console.log('Registration successful:', data.user);
       } else {
-        alert(data.detail || 'Registration failed');
+        setAuthError(data.detail || 'Registration failed. Please try again.');
       }
     } catch (error) {
       console.error('Registration error:', error);
-      alert('Registration failed');
+      setAuthError('Registration failed. Please try again.');
     }
   };
 

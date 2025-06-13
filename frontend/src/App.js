@@ -571,7 +571,7 @@ function App() {
                   ×
                 </button>
               </div>
-              <form onSubmit={handleRegister}>
+              <form onSubmit={handleRegister} noValidate>
                 {authError && (
                   <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
                     {authError}
@@ -586,6 +586,7 @@ function App() {
                     value={registerForm.name}
                     onChange={(e) => setRegisterForm({...registerForm, name: e.target.value})}
                     placeholder="Enter your full name"
+                    autoComplete="name"
                   />
                 </div>
                 <div className="mb-4">
@@ -597,6 +598,7 @@ function App() {
                     value={registerForm.email}
                     onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
                     placeholder="Enter your email"
+                    autoComplete="email"
                   />
                 </div>
                 <div className="mb-6">
@@ -608,11 +610,13 @@ function App() {
                     value={registerForm.password}
                     onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
                     placeholder="Create a password"
+                    autoComplete="new-password"
                   />
                 </div>
                 <button
                   type="submit"
                   className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                  disabled={!registerForm.name || !registerForm.email || !registerForm.password}
                 >
                   Create Account
                 </button>

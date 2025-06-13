@@ -461,11 +461,19 @@ function App() {
 
       {/* Login Modal */}
       {showLogin && (
-        <div className="fixed inset-0 z-50 overflow-hidden">
-          <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setShowLogin(false)}></div>
+        <div className="fixed inset-0 z-50 overflow-hidden" onClick={() => setShowLogin(false)}>
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
-              <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+            <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">Login</h2>
+                <button
+                  onClick={() => setShowLogin(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
               <form onSubmit={handleLogin}>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
@@ -475,6 +483,7 @@ function App() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     value={loginForm.email}
                     onChange={(e) => setLoginForm({...loginForm, email: e.target.value})}
+                    placeholder="Enter your email"
                   />
                 </div>
                 <div className="mb-6">
@@ -485,11 +494,12 @@ function App() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     value={loginForm.password}
                     onChange={(e) => setLoginForm({...loginForm, password: e.target.value})}
+                    placeholder="Enter your password"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
                 >
                   Login
                 </button>
@@ -497,13 +507,14 @@ function App() {
               <p className="text-center mt-4 text-sm text-gray-600">
                 Don't have an account?{' '}
                 <button
+                  type="button"
                   onClick={() => {
                     setShowLogin(false);
                     setShowRegister(true);
                   }}
-                  className="text-blue-600 hover:text-blue-800"
+                  className="text-blue-600 hover:text-blue-800 font-medium"
                 >
-                  Register
+                  Register here
                 </button>
               </p>
             </div>

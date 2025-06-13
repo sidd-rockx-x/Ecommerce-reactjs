@@ -558,7 +558,10 @@ function App() {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Create Account</h2>
                 <button
-                  onClick={() => setShowRegister(false)}
+                  onClick={() => {
+                    setShowRegister(false);
+                    setAuthError('');
+                  }}
                   className="text-gray-400 hover:text-gray-600 text-2xl"
                 >
                   ×

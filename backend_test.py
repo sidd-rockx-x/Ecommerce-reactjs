@@ -137,6 +137,10 @@ class EcommerceAPITester(unittest.TestCase):
 
     def test_08_login_user(self):
         """Test user login"""
+        # If we don't have a registered user, register one first
+        if not self.token:
+            self.test_07_register_user()
+            
         print(f"\n🔍 Testing user login with email {self.test_user_email}...")
         data = {
             "email": self.test_user_email,

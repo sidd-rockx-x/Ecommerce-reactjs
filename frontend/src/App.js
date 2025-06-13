@@ -647,8 +647,9 @@ function App() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!registerForm.name || !registerForm.email || !registerForm.password}
+                  data-testid="register-submit-button"
                 >
                   Create Account
                 </button>

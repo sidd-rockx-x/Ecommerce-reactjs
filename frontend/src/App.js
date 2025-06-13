@@ -484,7 +484,10 @@ function App() {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Login</h2>
                 <button
-                  onClick={() => setShowLogin(false)}
+                  onClick={() => {
+                    setShowLogin(false);
+                    setAuthError('');
+                  }}
                   className="text-gray-400 hover:text-gray-600 text-2xl"
                 >
                   ×

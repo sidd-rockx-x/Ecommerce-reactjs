@@ -621,6 +621,7 @@ function App() {
                   onClick={() => {
                     setShowRegister(false);
                     setShowLogin(true);
+                    setAuthError('');
                   }}
                   className="text-blue-600 hover:text-blue-800 font-medium"
                 >

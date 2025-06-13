@@ -135,7 +135,19 @@ function App() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setAuthError('');
+
+    // Client-side validation
+    if (!loginForm.email || !loginForm.password) {
+      setAuthError('Please fill in all fields.');
+      return;
+    }
+
+    if (!loginForm.email.includes('@')) {
+      setAuthError('Please enter a valid email address.');
+      return;
+    }
     
     try {
       const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
@@ -153,19 +165,37 @@ function App() {
         setUser(data.user);
         setShowLogin(false);
         setLoginForm({ email: '', password: '' });
+        setAuthError('');
         console.log('Login successful:', data.user);
       } else {
         setAuthError(data.detail || 'Login failed. Please check your credentials.');
       }
     } catch (error) {
       console.error('Login error:', error);
-      setAuthError('Login failed. Please try again.');
+      setAuthError('Login failed. Please check your connection and try again.');
     }
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setAuthError('');
+
+    // Client-side validation
+    if (!registerForm.name || !registerForm.email || !registerForm.password) {
+      setAuthError('Please fill in all fields.');
+      return;
+    }
+
+    if (!registerForm.email.includes('@')) {
+      setAuthError('Please enter a valid email address.');
+      return;
+    }
+
+    if (registerForm.password.length < 6) {
+      setAuthError('Password must be at least 6 characters long.');
+      return;
+    }
     
     try {
       const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
@@ -183,13 +213,14 @@ function App() {
         setUser(data.user);
         setShowRegister(false);
         setRegisterForm({ email: '', password: '', name: '' });
+        setAuthError('');
         console.log('Registration successful:', data.user);
       } else {
         setAuthError(data.detail || 'Registration failed. Please try again.');
       }
     } catch (error) {
       console.error('Registration error:', error);
-      setAuthError('Registration failed. Please try again.');
+      setAuthError('Registration failed. Please check your connection and try again.');
     }
   };
 

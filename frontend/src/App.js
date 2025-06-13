@@ -275,13 +275,19 @@ function App() {
               ) : (
                 <>
                   <button
-                    onClick={() => setShowLogin(true)}
+                    onClick={() => {
+                      setAuthError('');
+                      setShowLogin(true);
+                    }}
                     className="text-blue-600 hover:text-blue-800 font-medium"
                   >
                     Login
                   </button>
                   <button
-                    onClick={() => setShowRegister(true)}
+                    onClick={() => {
+                      setAuthError('');
+                      setShowRegister(true);
+                    }}
                     className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
                   >
                     Register

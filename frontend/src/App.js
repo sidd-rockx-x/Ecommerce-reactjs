@@ -482,6 +482,11 @@ function App() {
                 </button>
               </div>
               <form onSubmit={handleLogin}>
+                {authError && (
+                  <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                    {authError}
+                  </div>
+                )}
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
                   <input

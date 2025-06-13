@@ -524,20 +524,29 @@ function App() {
 
       {/* Register Modal */}
       {showRegister && (
-        <div className="fixed inset-0 z-50 overflow-hidden">
-          <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setShowRegister(false)}></div>
+        <div className="fixed inset-0 z-50 overflow-hidden" onClick={() => setShowRegister(false)}>
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
-              <h2 className="text-2xl font-bold text-center mb-6">Register</h2>
+            <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">Create Account</h2>
+                <button
+                  onClick={() => setShowRegister(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
               <form onSubmit={handleRegister}>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                  <label className="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
                   <input
                     type="text"
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     value={registerForm.name}
                     onChange={(e) => setRegisterForm({...registerForm, name: e.target.value})}
+                    placeholder="Enter your full name"
                   />
                 </div>
                 <div className="mb-4">
@@ -548,6 +557,7 @@ function App() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     value={registerForm.email}
                     onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
+                    placeholder="Enter your email"
                   />
                 </div>
                 <div className="mb-6">
@@ -558,25 +568,27 @@ function App() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     value={registerForm.password}
                     onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
+                    placeholder="Create a password"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
                 >
-                  Register
+                  Create Account
                 </button>
               </form>
               <p className="text-center mt-4 text-sm text-gray-600">
                 Already have an account?{' '}
                 <button
+                  type="button"
                   onClick={() => {
                     setShowRegister(false);
                     setShowLogin(true);
                   }}
-                  className="text-blue-600 hover:text-blue-800"
+                  className="text-blue-600 hover:text-blue-800 font-medium"
                 >
-                  Login
+                  Login here
                 </button>
               </p>
             </div>

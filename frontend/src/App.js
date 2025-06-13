@@ -15,6 +15,7 @@ function App() {
   const [showRegister, setShowRegister] = useState(false);
   const [loading, setLoading] = useState(true);
   const [cartLoading, setCartLoading] = useState(false);
+  const [authError, setAuthError] = useState('');
 
   // Auth forms state
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
